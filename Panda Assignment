@@ -1,0 +1,29 @@
+1. ~/Desktop$ sed -e '/zoo/d' -e'/Zoo/d' pandas.tsv > output_pandas.txt
+#^ this is for removing Zoo and putting into new file
+
+2. ~/Desktop$ awk '{print $1,$4,$2}' pandas.tsv |sort -k 3 > sorted_pandas.txt
+#^ this is for printing three columns and sorting by sex in a new text file
+
+3. ~/Desktop$ grep 'Zoo\|Reserve' pandas.tsv | awk '{print $5}' |  sort > panda_zoos_A2Z.txt
+# Puts names with 'zoo' and 'reserve' in a new file and sorts them alphabetically
+
+4. ~/Desktop$ sed -e 's/female/F/g' -e 's/male/M/g' pandas.tsv > panda_m_f.txt
+# Chnages 'female' to 'F' and 'male' to 'M' and outputs to a new file
+
+5. ~/Desktop$ grep "female" pandas.tsv | grep -c "October"
+#  prints female pandas born in october
+
+6. ~/Desktop$ grep -n "" pandas.tsv > panda_name.txt
+# Prints the line number in front of the name in a new file
+
+7. ~/Desktop$ sed -n '1p; 6p; 17p' pandas.tsv > lines_1_6_17.txt
+# Prints specific lines into a new file
+
+8. ~/Desktop$ tail -n +2 pandas.tsv | grep -i 'x' pandas.tsv > x_lines.txt
+# New file that contains the letter 'x' without headers I think
+
+9. ~/Desktop$ awk '!seen[$5]++' pandas.tsv > unique_places.txt
+# New file printed with unique locations
+
+10. ~/Desktop$ tail -n +2 pandas.tsv | sort -k4,4n  | awk '$4 < 10 {print $1, $4}' > young_pandas.txt
+# Ages sorted from youngest to oldest, only age and name of pandas younger than ten printed to new file
