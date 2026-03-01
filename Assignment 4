@@ -1,0 +1,33 @@
+1. ~/Desktop$ makeblastdb -in database_mystery_transcripts.fasta -dbtype nucl -out nucdatabase.txt
+#Make database for nucleotide
+
+2. ~/Desktop$ makeblastdb -in database_mystery_proteins.fasta -dbtype prot -out protdatabase.txt
+#Make protein database
+
+3.1 ~/Desktop$ blastn -db nucdatabase.txt -query query_mystery_nucleotide.fasta -evalue 1e-3 -outfmt 7 -out nucresults.txt
+# e value plus 7 results, I have to add the other parimeters (google how to set target) 
+
+3.2 ~/Desktop$ blastn -db nucdatabase.txt -query query_mystery_nucleotide.fasta -evalue 1e-3 -max_target_seqs 5 -outfmt 7 
+
+4. ~/Desktop$ blastn -db nucdatabase.txt -query query_mystery_nucleotide.fasta -evalue 1e-3 -max_target_seqs 5 -outfmt 7 -subject_besthit | awk '{print $2}'
+T010027234997
+T010003453160
+T010027234995
+
+5. ~/Desktop$ blastn -db nucdatabase.txt -query query_mystery_nucleotide.fasta -evalue 1e-3 -max_target_seqs 5 -outfmt 7 -subject_besthit | awk '$3 > 90'
+
+6.~/Desktop$ blastp -db protdatabase.txt -query query_mystery_protein.fasta -evalue 1e-5 -max_target_seqs 15 -outfmt 7
+
+7. ~/Desktop$ blastp -db protdatabase.txt -query query_mystery_protein.fasta -evalue 1e-5 -max_target_seqs 15 -outfmt 7 -subject_besthit | awk '{print $2}'
+P010027090796
+P010027090798
+P010027073865
+P010027077695
+P010027071558
+P010027071553
+
+8. Coffea arabica
+
+9. Gardenia jasminoides
+
+10. putative catalase mRNA
